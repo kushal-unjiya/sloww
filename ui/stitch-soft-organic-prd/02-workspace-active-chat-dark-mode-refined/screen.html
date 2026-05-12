@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sloww AI - Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        zinc: {
+                            950: "#09090b",
+                            900: "#18181b",
+                            800: "#27272a",
+                            700: "#3f3f46",
+                            500: "#71717a",
+                            300: "#d4d4d8",
+                            200: "#e4e4e7"
+                        }
+                    },
+                    fontFamily: {
+                        display: "Newsreader",
+                        headline: ["Newsreader"],
+                        body: ["Inter"],
+                        label: ["Inter"]
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #09090b;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #27272a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #3f3f46;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200 h-screen flex flex-col overflow-hidden">
+<header class="flex items-center justify-between px-6 py-4 border-b border-zinc-800 flex-shrink-0 bg-zinc-950">
+<div class="flex items-center space-x-4">
+<div class="w-8 h-8 rounded-full bg-zinc-200 flex items-center justify-center overflow-hidden">
+<svg class="w-6 h-6 text-zinc-950" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-medium text-zinc-200">Physics-Informed Neural Networks: Extensions and Applications</h1>
+</div>
+<button class="flex items-center space-x-2 bg-zinc-200 text-zinc-950 px-4 py-2 rounded-full font-medium hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Create notebook</span>
+</button>
+</header>
+<main class="flex flex-1 overflow-hidden">
+<!-- Sources Column -->
+<aside class="w-[380px] flex flex-col border border-zinc-800 flex-shrink-0 bg-zinc-900 m-4 rounded-xl">
+<div class="flex items-center justify-between px-4 py-4 border-b border-zinc-800">
+<h2 class="text-lg font-medium text-zinc-200">Sources</h2>
+<button class="p-1 hover:bg-zinc-800 rounded-md text-zinc-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">vertical_split</span>
+</button>
+</div>
+<div class="p-4">
+<button class="w-full flex items-center justify-center space-x-2 py-2.5 rounded-full border border-zinc-700 hover:bg-zinc-800 transition-colors text-sm font-medium text-zinc-300">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Add sources</span>
+</button>
+</div>
+<div class="px-4 pb-4">
+<div class="bg-zinc-950 rounded-xl border border-zinc-800 focus-within:border-zinc-700 transition-colors">
+<div class="flex items-center px-3 py-3">
+<span class="material-symbols-outlined text-zinc-500 text-[20px]">search</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm py-0 pl-2 pr-0 text-zinc-200 placeholder-zinc-500" placeholder="Search the web for new sources" type="text"/>
+</div>
+<div class="flex items-center justify-between px-3 pb-3 pt-1">
+<div class="flex space-x-2">
+<button class="flex items-center space-x-1 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-300 hover:bg-zinc-800 transition-colors">
+<span class="material-symbols-outlined text-[16px]">language</span>
+<span>Web</span>
+<span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+<button class="flex items-center space-x-1 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-300 hover:bg-zinc-800 transition-colors">
+<span class="material-symbols-outlined text-[16px]">search</span>
+<span>Fast research</span>
+<span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+</div>
+<button class="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-zinc-700 transition-colors">
+<span class="material-symbols-outlined text-[16px] text-zinc-300">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<div class="px-4 py-2 flex items-center justify-between text-sm text-zinc-500">
+<span>Select all sources</span>
+<button class="w-5 h-5 rounded flex items-center justify-center bg-zinc-700 text-zinc-200">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+</div>
+<div class="space-y-1 px-2 pb-4">
+<!-- PDF Item -->
+<div class="group flex items-center justify-between px-2 py-2 rounded-lg hover:bg-zinc-800 cursor-pointer transition-colors">
+<div class="flex items-center space-x-3 overflow-hidden">
+<div class="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-red-900/20 rounded text-red-400 text-[10px] font-bold border border-red-900/30">PDF</div>
+<span class="text-sm truncate text-zinc-300">1-s2.0-S0021999118307125-main.pdf</span>
+</div>
+<button class="flex-shrink-0 w-5 h-5 rounded flex items-center justify-center bg-zinc-700 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+</div>
+<!-- PDF Item -->
+<div class="group flex items-center justify-between px-2 py-2 rounded-lg hover:bg-zinc-800 cursor-pointer transition-colors">
+<div class="flex items-center space-x-3 overflow-hidden">
+<div class="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-red-900/20 rounded text-red-400 text-[10px] font-bold border border-red-900/30">PDF</div>
+<span class="text-sm truncate text-zinc-300">240816806v1_240927_154839 (1).pdf</span>
+</div>
+<button class="flex-shrink-0 w-5 h-5 rounded flex items-center justify-center bg-zinc-700 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+</div>
+<!-- Chat Item -->
+<div class="group flex items-center justify-between px-2 py-2 rounded-lg hover:bg-zinc-800 cursor-pointer transition-colors">
+<div class="flex items-center space-x-3 overflow-hidden">
+<div class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded text-zinc-500">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</div>
+<span class="text-sm truncate text-zinc-300">ChatGPT - AWS storage theory overview</span>
+</div>
+<button class="flex-shrink-0 w-5 h-5 rounded flex items-center justify-center bg-zinc-700 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+</div>
+<!-- PDF Item -->
+<div class="group flex items-center justify-between px-2 py-2 rounded-lg hover:bg-zinc-800 cursor-pointer transition-colors">
+<div class="flex items-center space-x-3 overflow-hidden">
+<div class="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-red-900/20 rounded text-red-400 text-[10px] font-bold border border-red-900/30">PDF</div>
+<span class="text-sm truncate text-zinc-300">Fully Unsupervised Fault Detection in Solar Po...</span>
+</div>
+<button class="flex-shrink-0 w-5 h-5 rounded flex items-center justify-center bg-zinc-700 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+</div>
+<!-- PDF Item -->
+<div class="group flex items-center justify-between px-2 py-2 rounded-lg hover:bg-zinc-800 cursor-pointer transition-colors">
+<div class="flex items-center space-x-3 overflow-hidden">
+<div class="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-red-900/20 rounded text-red-400 text-[10px] font-bold border border-red-900/30">PDF</div>
+<span class="text-sm truncate text-zinc-300">s42254-021-00314-5.pdf</span>
+</div>
+<button class="flex-shrink-0 w-5 h-5 rounded flex items-center justify-center bg-zinc-700 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Chat Column -->
+<section class="flex-1 flex flex-col bg-zinc-900 m-4 ml-0 rounded-xl border border-zinc-800 relative overflow-hidden">
+<div class="flex items-center justify-between px-6 py-4 border-b border-zinc-800 flex-shrink-0">
+<h2 class="text-lg font-medium text-zinc-200">Chat</h2>
+<div class="flex items-center space-x-2">
+<button class="p-2 hover:bg-zinc-800 rounded-md text-zinc-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+<button class="p-2 hover:bg-zinc-800 rounded-md text-zinc-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-8 py-8">
+<div class="max-w-3xl mx-auto">
+<div class="flex justify-between items-start mb-8">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-pink-900/20 text-2xl">
+                            🧠
+                        </div>
+<button class="flex items-center space-x-2 px-4 py-2 rounded-full border border-zinc-700 text-sm text-zinc-300 hover:bg-zinc-800 transition-colors">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Customise</span>
+</button>
+</div>
+<h1 class="text-3xl font-semibold mb-2 text-zinc-200">Physics-Informed Neural Networks: Extensions and Applications</h1>
+<div class="text-sm text-zinc-500 mb-8">
+                        5 sources · 22 Nov 2024
+                    </div>
+<div class="prose prose-invert max-w-none text-zinc-300 leading-relaxed text-[15px]">
+<p class="mb-4">
+<strong class="text-zinc-100 font-semibold">Physics-informed machine learning</strong> provides a transformative framework that integrates physical laws, such as <strong class="text-zinc-100 font-semibold">partial differential equations</strong>, directly into neural network architectures. This approach addresses the limitations of classical numerical methods and purely data-driven models, which often struggle with <strong class="text-zinc-100 font-semibold">high-dimensional systems</strong>, noisy data, or incomplete physical knowledge. By embedding <strong class="text-zinc-100 font-semibold">mathematical constraints</strong> as biases or loss functions, these models can produce physically consistent predictions even when experimental data is sparse. Key applications include <strong class="text-zinc-100 font-semibold">fluid mechanics</strong>, biomedical imaging, and materials science, where they help solve complex <strong class="text-zinc-100 font-semibold">inverse problems</strong> and discover hidden dynamics. Ultimately, this synergy between <strong class="text-zinc-100 font-semibold">scientific computing</strong> and deep learning enables more robust, interpretable, and scalable simulations of real-world physical phenomena.
+                        </p>
+</div>
+<div class="flex items-center space-x-4 mt-6">
+<button class="flex items-center space-x-2 px-4 py-1.5 rounded-full border border-zinc-700 text-xs text-zinc-300 hover:bg-zinc-800 transition-colors">
+<span class="material-symbols-outlined text-[16px]">push_pin</span>
+<span>Save to note</span>
+</button>
+<div class="flex items-center space-x-1">
+<button class="p-1.5 text-zinc-500 hover:text-zinc-300 transition-colors rounded-md hover:bg-zinc-800">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+<button class="p-1.5 text-zinc-500 hover:text-zinc-300 transition-colors rounded-md hover:bg-zinc-800">
+<span class="material-symbols-outlined">thumb_up</span>
+</button>
+<button class="p-1.5 text-zinc-500 hover:text-zinc-300 transition-colors rounded-md hover:bg-zinc-800">
+<span class="material-symbols-outlined">thumb_down</span>
+</button>
+</div>
+</div>
+<div class="mt-12 space-y-3">
+<button class="w-full text-left px-5 py-3 rounded-xl bg-zinc-950 border border-zinc-800 hover:bg-zinc-800 transition-colors text-sm text-zinc-300">
+                            What is the core concept of Physics-Informed Neural Networks?
+                        </button>
+<button class="w-full text-left px-5 py-3 rounded-xl bg-zinc-950 border border-zinc-800 hover:bg-zinc-800 transition-colors text-sm text-zinc-300">
+                            How do PINNs handle problems with small or noisy data?
+                        </button>
+</div>
+</div>
+</div>
+<div class="p-6 pt-0 mt-auto bg-zinc-900">
+<div class="max-w-3xl mx-auto">
+<div class="relative bg-zinc-950 border border-zinc-800 rounded-2xl flex flex-col focus-within:border-zinc-700 transition-colors shadow-sm">
+<textarea class="w-full bg-transparent border-none focus:ring-0 resize-none px-5 text-zinc-200 placeholder-zinc-500 text-base min-h-[48px] py-3" placeholder="Start typing..." rows="1"></textarea>
+<div class="flex items-center justify-end px-4 py-3 border-t border-transparent">
+<div class="flex items-center space-x-3 text-xs text-zinc-500 font-medium">
+<span>5 sources</span>
+<button class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-zinc-700 transition-colors text-zinc-200">
+<span class="material-symbols-outlined text-[20px]">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="text-center mt-3 text-xs text-zinc-500">
+                        NotebookLM can be inaccurate; please double-check its responses.
+                    </div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

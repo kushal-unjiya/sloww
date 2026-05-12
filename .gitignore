@@ -1,0 +1,61 @@
+# Cursor / editor config
+.cursor/
+.vscode/
+.idea/
+
+# Node / JavaScript
+node_modules/
+dist/
+build/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Logs
+*.log
+logs/
+
+# Environment & secrets
+.env
+.env.*
+!*.env.example
+compose.env
+compose.env.*
+!compose.env.example
+project-*.json
+*.pem
+*.key
+*.crt
+
+# OS / miscellaneous
+.DS_Store
+Thumbs.db
+
+# Temporary / local files
+tmp/
+temp/
+.cache/
+.eslintcache
+
+# Legacy / archived (not part of current stack)
+PAI-DataLoader-Core-release-predev/
+
+# node
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
+#react 
+.next/
+.pnpm-store
+*.egg-info

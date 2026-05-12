@@ -1,0 +1,46 @@
+[project]
+name = "sloww-inference"
+version = "0.1.0"
+description = "Sloww AI internal inference service (FastAPI + Qdrant + Postgres + LLM providers)."
+readme = "README.md"
+requires-python = ">=3.13,<4.0"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.32.0",
+  "pydantic>=2.9.0",
+  "pydantic-settings>=2.5.0",
+  "qdrant-client>=1.10.0",
+  "psycopg[binary,pool]>=3.2.0",
+  "sqlalchemy[asyncio]>=2.0.30",
+  "asyncpg>=0.29.0",
+  "httpx>=0.27.0",
+  "python-dotenv>=1.0.0",
+  "langgraph>=0.2.20",
+  "dspy-ai>=2.5.0",
+  "rank-bm25>=0.2.2",
+  "sentence-transformers>=3.0.0",
+  "orjson>=3.10.0",
+  "google-genai>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-asyncio>=0.24.0",
+  "aiosqlite>=0.20.0",
+  "ruff>=0.7.0",
+  "mypy>=1.10.0",
+]
+
+[project.scripts]
+sloww-inference = "src.main:run"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+

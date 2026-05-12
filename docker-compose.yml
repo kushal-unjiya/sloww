@@ -1,0 +1,119 @@
+services:
+  postgres:
+    image: ankane/pgvector:latest
+    container_name: sloww-postgres
+    env_file:
+      - compose.env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: sloww-qdrant
+    ports:
+      - "6333:6333"
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c ':> /dev/tcp/127.0.0.1/6333' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+
+  app:
+    build:
+      context: ./backend
+    container_name: sloww-app
+    env_file:
+      - compose.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      GCS_BUCKET_NAME: ${GCS_BUCKET_NAME}
+      GCS_PROJECT_ID: ${GCS_PROJECT_ID:-}
+      GOOGLE_APPLICATION_CREDENTIALS: ${GOOGLE_APPLICATION_CREDENTIALS:-}
+      INFERENCE_URL: ${INFERENCE_URL}
+      INTERNAL_TOKEN: ${INTERNAL_TOKEN}
+      CLERK_JWKS_URL: ${CLERK_JWKS_URL}
+      CLERK_JWT_ISSUER: ${CLERK_JWT_ISSUER}
+      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+
+  inference:
+    build:
+      context: ./inference
+    container_name: sloww-inference
+    env_file:
+      - compose.env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      QDRANT_URL: ${QDRANT_URL}
+      QDRANT_API_KEY: ${QDRANT_API_KEY}
+      INTERNAL_TOKEN: ${INTERNAL_TOKEN}
+    ports:
+      - "8001:8001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+
+  data-loader:
+    build:
+      context: ./data-loader
+    container_name: sloww-data-loader
+    env_file:
+      - compose.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      QDRANT_URL: ${QDRANT_URL}
+      QDRANT_API_KEY: ${QDRANT_API_KEY}
+      GCS_BUCKET_NAME: ${GCS_BUCKET_NAME}
+      GCS_PROJECT_ID: ${GCS_PROJECT_ID:-}
+      GOOGLE_APPLICATION_CREDENTIALS: ${GOOGLE_APPLICATION_CREDENTIALS:-}
+      INGEST_MODE: ${INGEST_MODE:-poll}
+      WORKER_ID: ${WORKER_ID:-data-loader-1}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+
+  ui:
+    build:
+      context: ./ui
+      args:
+        VITE_CLERK_PUBLISHABLE_KEY: ${VITE_CLERK_PUBLISHABLE_KEY}
+        VITE_APP_URL: http://localhost:8000
+    container_name: sloww-ui
+    env_file:
+      - compose.env
+    environment:
+      APP_URL: ${APP_URL}
+    ports:
+      - "3000:80"
+    depends_on:
+      app:
+        condition: service_started
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    name: sloww-network

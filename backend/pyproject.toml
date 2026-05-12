@@ -1,0 +1,42 @@
+[project]
+name = "sloww-backend"
+version = "0.1.0"
+description = "Sloww AI control-plane API service (FastAPI + Postgres + Alembic + Clerk verification)."
+readme = "README.md"
+requires-python = ">=3.13,<4.0"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.32.0",
+  "pydantic>=2.9.0",
+  "pydantic-settings>=2.6.0",
+  "sqlalchemy>=2.0.0",
+  "psycopg[binary,pool]>=3.2.0",
+  "httpx>=0.27.0",
+  "alembic>=1.13.0",
+  "python-dotenv>=1.0.0",
+  "google-cloud-storage>=2.18.0",
+  "google-cloud-pubsub>=2.21.0",
+  "PyJWT[crypto]>=2.9.0",
+  "rich>=14.3.3",
+  "python-multipart>=0.0.22",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ruff>=0.7.0",
+  "mypy>=1.10.0",
+]
+
+[project.scripts]
+sloww-backend = "api.main:run"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["api*"]
+
+
